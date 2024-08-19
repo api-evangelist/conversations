@@ -1,0 +1,33 @@
+---
+layout: default
+title: People
+---
+<div class="container">
+	<div class="row">
+		<div class="col-1"></div>
+		<div class="col-10">
+			<br>
+			<h2>People</h2>
+			<p>These are the people we've had from across the API community.</p>
+			{% assign peoples = site.people %}
+			<table width="100%" border="0">
+			{% for people in peoples %}      
+				<tr>
+					<td align="center" valign="middle" style="" width="15%">
+						<a href="{{ people.url }}"><img src="{{ people.image }}" width="65" /></a>
+					</td>
+					<td align="left" valign="middle" style="padding-top: 25px; font-size: 18px;">
+						<strong>{{ people.title }}</strong>
+					</td>
+					<td width="15%" align="center" style="padding-top: 25px;">
+						<a href="{{ people.url }}">
+							<button type="button" class="btn btn-dark">More Info</button>
+						</a>
+					</td>
+				</tr>
+			{% endfor %}
+			</table>
+		</div>
+		<div class="col-1"></div>
+	</div>
+</div>

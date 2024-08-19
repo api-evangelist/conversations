@@ -1,0 +1,55 @@
+---
+layout: default
+title: Questions
+---
+<div class="container">
+	<div class="row">
+		<div class="col-1"></div>
+		<div class="col-10">
+			<br>
+			<h2>Questions</h2>
+			<p>These are the questions we ask during API Evangelist converstions. The goal isn't to limit to these questions, but to provide a potential baseline across all conversations. You can click on each on to see answers across conversations, or check which questions you'd like to be asked, and submit for consideration as a discussion.</p>
+			{% assign questions = site.questions %}
+			{% assign questions = questions | sort: "order" %}
+			<form action="https://formspree.io/f/xpwarqyq" method="POST">
+			<table width="75%" align="center">
+			{% for question in questions %}      
+				<tr>
+					<td width="5%" align="center" style="">
+						<input type="checkbox" value="true" name="{{ question.title }}" style="height: 25px; width: 25px; border: 1px solid #000;">
+					</td>
+					<td valign="top" style="padding-top: 15px;">
+						<strong>{{ question.title }}</strong>
+					</td>
+					<td width="20%" align="center">
+						<a href="{{ question.url }}">
+							<button type="button" class="btn btn-dark">See Answers</button>
+						</a>
+					</td>
+				</tr>
+			{% endfor %}
+			</table>
+			<div class="mb-3">
+				<label for="email" class="form-label">Your Email</label>
+				<input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
+			  </div>
+			  <div class="mb-3">
+				<label for="role" class="form-label">Your Role</label>
+				<input type="text" class="form-control" id="role" name="role" placeholder="">
+			  </div>	
+			  <div class="mb-3">
+				<label for="company" class="form-label">Your Company</label>
+				<input type="text" class="form-control" id="company" name="company" placeholder="">
+			  </div>			  		  
+			  <div class="mb-3">
+				<label for="other" class="form-label">Other Info</label>
+				<textarea class="form-control" id="other" name="other" rows="3"></textarea>
+			  </div>			
+			<center>
+				<input type="submit" class="btn btn-dark" name="Request" value="Request a Conversation">
+			</center>
+			</form>		
+		</div>
+		<div class="col-1"></div>
+	</div>
+</div>

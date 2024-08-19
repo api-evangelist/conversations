@@ -1,0 +1,101 @@
+title: Conversations
+description: Talking with people doing the work across business sectors, and all levels of the enterprise.
+lang: en
+
+baseurl: ""
+
+url: https://conversations.apievangelist.com
+
+logo: https://kinlane-productions2.s3.amazonaws.com/api-evangelist-logos/api-evangelist-logo-butterfly.png
+
+navbar:
+    sticky:         true
+    search:         true
+  
+author:
+    name:           Kin Lane
+    title:          API Evangelist
+    avatar:         https://kinlane-productions2.s3.amazonaws.com/kin-lane/kin-lane-cartoon-questioning.png
+
+social:
+    email:
+    website:
+    facebook:       
+    flickr:
+    dribbble:
+    github:         https://github.com/api-evangelist
+    googleplus:
+    instagram:     
+    linkedin:       https://www.linkedin.com/in/kinlane/
+    pinterest:
+    twitter:        
+    vimeo:          
+    youtube:        https://www.youtube.com/c/KinLane
+    mastodon:       
+
+# Share button
+share:
+    post:           true # Display share buttons on a post page
+    doc:            true # Display share buttons on a doc page
+    twitter:        username # Enable by adding Twitter handle 
+    facebook:       true # Enable by setting true (Facebook handle not required)
+
+# Default footer image settings
+footer:
+    copyright:      API Evangelist
+
+# Disqus comments shortname, requires Disqus account https://disqus.com/
+disqus:
+    shortname:      # 1234
+
+# Google analytics code, get your code here https://www.google.com/analytics/
+google_analytics: UA-1119465-51
+
+# Build settings
+markdown:           kramdown
+highlighter:        rouge
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-gist
+  - jekyll-avatar
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+
+sass:
+  style: compressed
+
+collections:
+  sessions:
+    output: true
+  people:
+    output: true
+  questions:
+    output: true
+  industries:
+    output: true            
+
+defaults:
+  - scope:
+      path: ""
+      type: sessions
+    values:
+      layout: sessions
+  - scope:
+      path: ""
+      type: people
+    values:
+      layout: people
+  - scope:
+      path: ""
+      type: questions
+    values:
+      layout: questions
+  - scope:
+      path: ""
+      type: industries
+    values:
+      layout: industries                  
