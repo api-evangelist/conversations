@@ -111,7 +111,7 @@ title: Conversations
                 html += '</tr>'; 
                 html += '<tr>';
                 html += '<td valign="top" style="padding: 30px" align="center">';
-                html += '<strong>No Results</strong> - There was no results for your search, try again.';
+                html += '<strong>There was no results for your search, try again.</strong>';
                 html += '</td>';
                 html += '</tr>'; 
         }
