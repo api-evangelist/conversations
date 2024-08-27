@@ -39,6 +39,7 @@ title: Conversations
 </form>
 </center>
 <table align="center" style="width: 50%; border: 1px solid #FFF;" class="table table-hover" id="search-results"></table>    
+<p align="center"><a href="/questions/"><strong>Submit Your Questions for Your Conversation</strong></a></p>
 <script>
     function search(){
         
