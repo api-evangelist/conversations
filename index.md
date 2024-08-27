@@ -38,7 +38,7 @@ title: Conversations
     </script>    
 </form>
 </center>
-<table align="center" style="width: 50%;" class="table table-hover" id="search-results"></table>    
+<table align="center" style="width: 50%; border: 1px solid #FFF;" class="table table-hover" id="search-results"></table>    
 <script>
     function search(){
         
@@ -108,7 +108,9 @@ title: Conversations
                 html += '<td align="center">';
                 html += '<img src="https://s3.amazonaws.com/kinlane-productions2/api-evangelist-logos/api-evangelist-red-seal.png" width="100" style="margin: 15px;" />';
                 html += '</td>';
-                html += '<td valign="top" style="padding: 30px">';
+                html += '</tr>'; 
+                html += '<tr>';
+                html += '<td valign="top" style="padding: 30px" align="center">';
                 html += '<strong>No Results</strong> - There was no results for your search, try again.';
                 html += '</td>';
                 html += '</tr>'; 
