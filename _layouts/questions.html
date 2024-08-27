@@ -9,7 +9,27 @@ layout: default
             <h2>{{ page.title }}</h2>
             {{ page.description }}
             <br>
-            <p align="center"><a href="/questions/"><strong>All Questions</strong></a></p>
+			{% for session in site.sessions %}      
+                {% for details in session.conversation %}      
+                    {% if details.question == page.title %}      
+                        <div class="row" style="margin-bottom: 15px;">
+                            <div class="col-4">
+                                <strong>{{ session.guestName }}</strong>, {{ session.guestRole }} at {{ session.guestCompany }}
+                            </div>                              
+                            <div class="col-6">
+                                {{ details.answer }}
+                            </div>   
+                            <div class="col-2" align="center">
+                                <a href="{{ details.url }}">
+                                    <button type="button" class="btn btn-dark">View Session</button>
+                                </a>
+                            </div>                                               
+                        </div>
+                    {% endif %}
+                {% endfor %}
+			{% endfor %}
+            <br>
+            <p align="center"><a href="/questions/"><strong>Return to All Questions</strong></a></p>
 
         </div>
         <div class="col-1"></div>

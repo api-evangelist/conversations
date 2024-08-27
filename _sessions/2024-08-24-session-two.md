@@ -1,19 +1,29 @@
 ---
 title: API Evangelist Conversation with Tim Lane
-description: This is the second pilot for the new API Evangelist Conversations. This is an off the record edition where I interview my alter ego Tim Lane, but obfuscate my voice and hide my face. Like the first one, it isn't that smooth as it is awkward to interview yourself, but I am also just getting started with all the production around this series.
+description: This is the second pilot for the new API Evangelist Conversations podcast. This is an off the record edition where I interview my alter ego Tim Lane, but obfuscate my voice and hide my face. Like the first one, it isn't that smooth as it is awkward to interview yourself, but I am also just getting started with all the production around this series.
 date: 2024-08-24
-image: https://i.ytimg.com/vi/miPXGNr04H0/hqdefault.jpg
-youtubeUrl: https://youtu.be/miPXGNr04H0
+youtubeId: miPXGNr04H0
 guestName: Tim Lane
 guestRole: Software Developer
 guestCompany: ACME Corporation
 guestIndustry: Circus and Entertainment
-guestImage: https://s3.amazonaws.com/kinlane-productions2/api-evangelist-logos/api-evangelist-red-seal.png
-bio: I a software developer working in the circus and entertainment industry producing simple HTTP APIs for use internally.
+guestImage: /assets/img/people/tim-lane-headshot.png
+bio: I a software developer working in the circus and entertainment industry producing simple HTTP APIs for use within my company.
 obfuscated: true
+summary: Exploring the world of enterprise APIs by interviewing myself (Kin Lane), then obfuscating my face and voice with AI, to work out the details of how the new podcast will work--this is the second pilot episode.
+subtitle: Conversation with People Doing Interesting Things with APIs
+audio_file: https://kinlane-productions2.s3.amazonaws.com/api-evangelist-conversations/api-evangelist-conversations-episode-2.wav
+audio_length: 56700000
+sound_cloud: https://soundcloud.com/kinlane/api-evangelist-conversation-with-tim-lane
+duration: '0:10:43'
+publish_date: "2024-08-24 15:00:00"
+url: https://conversations.apievangelist.com/sessions/2024-08-24-session-two.html
+tags:
+  - Technology
+  - APIs
 conversation:
 
-    - question: What is your name?
+    - question: Who are you?
       answer: I'm Tim Lane. 
 
     - question: What is your role?

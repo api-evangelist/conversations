@@ -7,9 +7,26 @@ layout: default
 		<div class="col-10">
             <br>
             <h2>{{ page.title }}</h2>
+            <p><i>{{ page.date | date: '%y/%m/%d' }}</i></p>
             {{ page.description }}
+            <br><br>
+            <center><iframe width="560" height="315" src="https://www.youtube.com/embed/{{ page.youtubeId }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></center>
             <br>
-            <p align="center"><a href="/sessions/"><strong>All Sessions</strong></a></p>
+            <h2>Conversation</h2>
+			{% for question in page.conversation %}      
+                <div class="row" style="margin-bottom: 15px;">
+					<div class="col-4" style="text-align: right;">
+						<strong>{{ question.question }}</strong>
+                    </div>
+					<div class="col-8">
+						{{ question.answer }}
+					</div>                    
+				</div>
+			{% endfor %}    
+            <br>
+            <hr>
+            <br>       
+            <p align="center"><a href="/sessions/"><strong>Back to View All Sessions</strong></a></p>
 
         </div>
         <div class="col-1"></div>

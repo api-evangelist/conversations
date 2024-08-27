@@ -1,5 +1,5 @@
-title: Conversations
-description: Talking with people doing the work across business sectors, and all levels of the enterprise.
+title: API Evangelist Conversations
+description: Talking with product and engineering folk who are doing interesting things with APIs across business sectors, and all levels of the enterprise.
 lang: en
 
 baseurl: ""
@@ -15,6 +15,7 @@ navbar:
 author:
     name:           Kin Lane
     title:          API Evangelist
+    email:          kin@apievangelist.com
     avatar:         https://kinlane-productions2.s3.amazonaws.com/kin-lane/kin-lane-cartoon-questioning.png
 
 social:

@@ -4,6 +4,6 @@ bio: I am the API Evangelist, making sense of the technology, business, people, 
 role: API Evangelist
 company: API Evangelist LLC
 industry: APIs
-image: https://s3.amazonaws.com/kinlane-productions2/api-evangelist-logos/api-evangelist-red-seal.png
+image: /assets/img/people/kin-lane-headshot.png
 obfuscated: false
 ---

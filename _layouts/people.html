@@ -6,12 +6,33 @@ layout: default
 		<div class="col-1"></div>
 		<div class="col-10">
             <br>
-            <img src="{{ people.image }}" width="150" align="right" />
-            <h2>{{ page.title }}</h2>
+            <img src="{{ page.image }}" width="150" align="right" />
+            <h2>{{ page.name }}</h2>
             <br>
             <p><strong>Bio:</strong> {{ page.bio }}</p>
             <p><strong>Role:</strong> {{ page.role }}</p>
-            <p><strong>Industry:</strong> {{ page.industry }}</p>
+            <p><strong>Company:</strong> {{ page.role }}</p>
+            <p><strong>Industry:</strong> {{ page.company }}</p>
+            <br>
+			{% for session in site.sessions %} 
+                {% if session.guestName == page.name %}    
+                    <h2>{{ session.title }}</h2>  
+                    <p>{{ session.description }}</p>
+                    <br><br>
+                    <center><iframe width="560" height="315" src="https://www.youtube.com/embed/{{ session.youtubeId }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></center>
+                    <br>                    
+                    {% for question in session.conversation %}      
+                        <div class="row" style="margin-bottom: 15px;">
+                            <div class="col-4" style="text-align: right;">
+                                <strong>{{ question.question }}</strong>
+                            </div>
+                            <div class="col-8">
+                                {{ question.answer }}
+                            </div>                    
+                        </div>
+                    {% endfor %}
+			    {% endif %}              
+            {% endfor %}        
             <br>
             <p align="center"><a href="/people/"><strong>All People</strong></a></p>
         </div>

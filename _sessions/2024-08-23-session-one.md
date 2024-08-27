@@ -1,19 +1,29 @@
 ---
 title: API Evangelist Conversation with Kin Lane
-description: This is the introductory pilot for the new API Evangelist Conversation podcast, where I interview myself to explore the new format, and work out all the kinks with producing and distributing. It is a little robotic and awkward as I interview myself, but something that will get more natural once I am talking to other human beings.
-date: 2024-08-23
-image: https://i.ytimg.com/vi/3M_d-HFd3-A/hqdefault.jpg
-youtubeUrl: https://youtu.be/3M_d-HFd3-A
+description: This is the introductory pilot for the new API Evangelist Conversation podcast, where I interview myself (Kin Lane) to explore the new format, and work out all the kinks with producing and distributing this podcast. It is a little robotic and awkward as I interview myself, but something that will get more natural once I am talking to other human beings.
+date: 2024-08-27
+youtubeId: 3M_d-HFd3-A
 guestName: Kin Lane
 guestRole: API Evangelist
 guestCompany: API Evangelist LLC
 guestIndustry: APIs
-guestImage: https://kinlane-productions2.s3.amazonaws.com/kin-lane/kin-lane-blue-shit-grey-hat.jpg
+guestImage: /assets/img/people/kin-lane-headshot.png
 bio: I am the API Evangelist, making sense of the technology, business, people, and policies of APIs since 2010.
 obfuscated: false
+summary: Exploring the world of enterprise APIs by interviewing myself (Kin Lane), to work out the details of how the new podcast will work--this is the first pilot episode.
+subtitle: Conversation with People Doing Interesting Things with APIs
+audio_file: https://kinlane-productions2.s3.amazonaws.com/api-evangelist-conversations/api-evangelist-conversations-episode-1.wav
+audio_length: 63100000
+sound_cloud: https://soundcloud.com/kinlane/api-evangelist-conversation-with-kin-lane
+duration: '0:11:56'
+publish_date: "2024-08-27 15:00:00"
+url: https://conversations.apievangelist.com/sessions/2024-08-23-session-one.html
+tags:
+  - Technology
+  - APIs
 conversation:
 
-    - question: What is your name?
+    - question: Who are you?
       answer: Oh, my name is Kin Lane.
 
     - question: What is your role?
