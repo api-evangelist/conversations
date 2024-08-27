@@ -2,8 +2,8 @@
 title: API Evangelist Conversation with Tim Lane
 description: This is the second pilot for the new API Evangelist Conversations. This is an off the record edition where I interview my alter ego Tim Lane, but obfuscate my voice and hide my face. Like the first one, it isn't that smooth as it is awkward to interview yourself, but I am also just getting started with all the production around this series.
 date: 2024-08-24
-image: https://i.ytimg.com/vi/SYHY6tJhOhc/hqdefault.jpg
-youtubeUrl: https://youtu.be/SYHY6tJhOhc
+image: https://i.ytimg.com/vi/miPXGNr04H0/hqdefault.jpg
+youtubeUrl: https://youtu.be/miPXGNr04H0
 guestName: Tim Lane
 guestRole: Software Developer
 guestCompany: ACME Corporation
