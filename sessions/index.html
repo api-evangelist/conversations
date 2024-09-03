@@ -9,7 +9,7 @@ title: Sessions
 			<br>
 			<h2>Sessions</h2>
 			<p>These are the sessions we've had from across the API community.</p>
-			{% assign sessions = site.sessions | sort: 'date' | sort: 'date' %}
+			{% assign sessions = site.sessions | reverse %}
 			<table width="100%">
 			{% for session in sessions %}      
 				<tr>
