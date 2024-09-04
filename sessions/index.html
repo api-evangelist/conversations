@@ -2,8 +2,7 @@
 layout: default
 title: Sessions
 ---
-<div class="container">
-	{% include partner.html %}
+<div class="container">	
 	<div class="row">
 		<div class="col-1"></div>
 		<div class="col-10">
@@ -11,6 +10,7 @@ title: Sessions
 			<h2>Sessions</h2>
 			<p>These are the sessions we've had from across the API community.</p>
 			{% assign sessions = site.sessions | reverse %}
+			{% include partner.html %}
 			<table width="100%">
 			{% for session in sessions %}      
 				<tr>
@@ -28,8 +28,8 @@ title: Sessions
 				</tr>
 			{% endfor %}
 			</table>
+			{% include partner.html %}
 		</div>
 		<div class="col-1"></div>
 	</div>
-	{% include partner.html %}
 </div>
