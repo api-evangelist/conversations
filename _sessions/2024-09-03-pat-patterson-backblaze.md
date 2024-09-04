@@ -22,6 +22,9 @@ tags:
   - Cloud Storage
   - Amazon S3
   - Evangelism
+partnerImage: https://api-evangelist.twic.pics/partners/bump-banner-728.png
+partnerUrl: https://bit.ly/3MEOGa9  
+partnerTitle: The API doc platform for Tech Writers & Engineers
 conversation:
 
   - question: Who are you?
