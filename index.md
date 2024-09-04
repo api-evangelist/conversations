@@ -38,7 +38,8 @@ title: Conversations
     </script>    
 </form>
 </center>
-<table align="center" style="width: 50%; border: 1px solid #FFF;" class="table table-hover" id="search-results"></table>    
+<table align="center" style="width: 50%; border: 1px solid #FFF;" class="table table-hover" id="search-results"></table>   
+{% include partner.html %} 
 <script>
     function search(){
         
