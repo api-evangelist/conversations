@@ -3,7 +3,6 @@ layout: default
 title: Industries
 ---
 <div class="container">
-	{% include partner.html %}
 	<div class="row">
 		<div class="col-1"></div>
 		<div class="col-10">
@@ -11,6 +10,7 @@ title: Industries
 			<h2>Industries</h2>
 			<p>These are the industries that the people we have conversation work in. You can click on each industry for more information, and new industries will emerge along with new conversations.</p>
 			{% assign industries = site.industries %}
+			{% include partner.html %}
 			<table width="100%">
 			{% for industry in industries %}      
 				<tr>
@@ -28,9 +28,9 @@ title: Industries
 				</tr>
 			{% endfor %}
 			</table>
+			{% include partner.html %}
 			<p>As we accumulate more industries we will work to better flesh out the details about each industry and company, as well as what questions are asked of each of our guests during conversations.</p>
 		</div>
 		<div class="col-1"></div>
 	</div>
-	{% include partner.html %}
 </div>
