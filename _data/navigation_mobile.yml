@@ -1,17 +1,26 @@
 # Mobile menu navigation links
 
-- title: Home
-  url: /
+  - title: Home
+    url: /
 
-- title: Docs
-  url: /docs/installation/
+  - title: Conversations
+    url: /sessions/   
 
-- title: Blog
-  url: /blog/
+  - title: Questions
+    url: /questions/  
 
-- title: Changelog
-  url: /changelog-timeline/
+  - title: People
+    url: /people/      
 
-- title: Contact
-  url: /contact/
-  button: success
+  - title: Industries
+    url: /industries/      
+
+  - title: About
+    url: /about/     
+
+  - title: API Evangelist
+    url: https://apievangelist.com
+
+  - title: Reach Out
+    url: https://apievangelist.com/contact/
+    button: success    
