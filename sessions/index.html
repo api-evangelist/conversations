@@ -15,7 +15,7 @@ title: Sessions
 			{% for session in sessions %}      
 				<tr>
 					<td align="center">
-						<a href="{{ session.url }}"><img src="https://i.ytimg.com/vi/{{ session.youtubeId }}/hqdefault.jpg" width="100" style="margin: 15px;" /></a>
+						<a href="{{ session.url }}"><img src="https://i.ytimg.com/vi/{{ session.youtubeId }}/hqdefault.jpg" width="150" style="margin: 15px;" /></a>
 					</td>
 					<td valign="top" style="padding: 30px">
 						<strong>{{ session.title }}{% if session.obfuscated == true %}<span style="color:#D22B2B;"> [OFF THE RECORD]</span>{% endif %}</strong> - {{ session.description }}
