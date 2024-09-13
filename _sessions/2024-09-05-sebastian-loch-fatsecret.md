@@ -17,7 +17,7 @@ audio_length: '15:43'
 sound_cloud: https://soundcloud.com/kinlane/api-evangelist-conversation-with-sebastian-loch-business-development-at-fatsecret
 duration: '0:16:05'
 publish_date: "2024-09-06 15:00:00"
-url: 
+url: https://kinlane-productions2.s3.amazonaws.com/api-evangelist-conversations/api-evangelist-conversation-2024-09-06-sebastian-loch-fatsecret.wav
 tags:
   - Nutrition
   - Food
