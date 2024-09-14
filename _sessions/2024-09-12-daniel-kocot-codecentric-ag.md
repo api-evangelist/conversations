@@ -12,12 +12,12 @@ bio: Daniel has been part of the codecentric team since October 2016. Since the 
 obfuscated: false
 summary: Investing in the specifications needed to provide what is needed by API producers as well as API consumers across every stage of the API lifecycle.
 subtitle: Conversation with People Doing Interesting Things with APIs
-audio_file: 91,178,364
-audio_length: '0:17:14'
+audio_file: https://kinlane-productions2.s3.amazonaws.com/api-evangelist-conversations/api-evangelist-conversation-2024-09-12-daniel-kocot-codecentric-ag.wav
+audio_length: 91178364
 sound_cloud: https://soundcloud.com/kinlane/api-evangelist-conversation-with-daniel-kocot-head-of-api-consulting-at-codecentric-ag
 duration: '0:17:14'
 publish_date: "2024-09-12 15:00:00"
-url: https://kinlane-productions2.s3.amazonaws.com/api-evangelist-conversations/api-evangelist-conversation-2024-09-12-daniel-kocot-codecentric-ag.wav
+url: https://conversations.apievangelist.com/sessions/2024-09-12-daniel-kocot-codecentric-ag.html
 tags:
   - Consulting
   - OpenAPI

@@ -12,12 +12,12 @@ bio: I'm a former developer and accidental marketer. I believe the best way to r
 obfuscated: false
 summary: Helping the business and engineering folks behind APIs do the work to understand what is the point of their API, and tell the story their consumers need to hear.
 subtitle: Conversation with People Doing Interesting Things with APIs
-audio_file: 87,141,766
-audio_length: '15:43'
+audio_file: https://kinlane-productions2.s3.amazonaws.com/api-evangelist-conversations/api-evangelist-conversation-2024-09-10-adam-duvander-everydeveloper.wav
+audio_length: 87141766
 sound_cloud: https://soundcloud.com/kinlane/api-evangelist-conversation-with-adam-duvander-technical-content-strategist-at-everydeveloper
 duration: '0:16:28'
 publish_date: "2024-09-10 15:00:00"
-url: https://kinlane-productions2.s3.amazonaws.com/api-evangelist-conversations/api-evangelist-conversation-2024-09-10-adam-duvander-everydeveloper.wav
+url: https://conversations.apievangelist.com/sessions/2024-09-10-adam-duvander-everydeveloper.html
 tags:
   - Marketing
   - Developers

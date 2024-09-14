@@ -12,12 +12,12 @@ bio: Sebastian has a passion for building scalable, consumer-facing health appli
 obfuscated: false
 summary: Doing the hard work of running a modern API and developing the business relationships you need compete in an AI-driven digital global landscape.
 subtitle: Conversation with People Doing Interesting Things with APIs
-audio_file: 83,216,796
-audio_length: '15:43'
+audio_file: https://kinlane-productions2.s3.amazonaws.com/api-evangelist-conversations/api-evangelist-conversation-2024-09-06-sebastian-loch-fatsecret.wav
+audio_length: 83216796
 sound_cloud: https://soundcloud.com/kinlane/api-evangelist-conversation-with-sebastian-loch-business-development-at-fatsecret
 duration: '0:16:05'
 publish_date: "2024-09-06 15:00:00"
-url: https://kinlane-productions2.s3.amazonaws.com/api-evangelist-conversations/api-evangelist-conversation-2024-09-06-sebastian-loch-fatsecret.wav
+url: https://conversations.apievangelist.com/sessions/2024-09-05-sebastian-loch-fatsecret.html
 tags:
   - Nutrition
   - Food

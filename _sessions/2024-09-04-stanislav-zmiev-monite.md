@@ -13,7 +13,7 @@ obfuscated: false
 summary: Taking a pragmatic view of how and why you should be versioning your APIs, and having a full accounting of the cost involved, while emulating the best approaches available out there today.
 subtitle: Conversation with People Doing Interesting Things with APIs
 audio_file: https://kinlane-productions2.s3.amazonaws.com/api-evangelist-conversations/api-evangelist-conversation-2024-09-03-stanislav-zmiev-monite.wav 
-audio_length: 89,275,814
+audio_length: 89275814
 sound_cloud: https://soundcloud.com/kinlane/api-evangelist-conversation-with-stanislav-zmiev-tech-lead-of-platform-engineering-at-monite
 duration: '0:16:05'
 publish_date: "2024-09-04 15:00:00"
