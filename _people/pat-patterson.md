@@ -1,6 +1,6 @@
 ---
 name: Pat Patterson
-bio: I am the API Evangelist, making sense of the technology, business, people, and policies of APIs since 2010.
+bio: Pat has evangelism experience across four enterprise software companies in the end user computing, data, integration and identity spaces.
 role: Chief Technical Evangelist
 company: Backblaze
 industry: Storage
