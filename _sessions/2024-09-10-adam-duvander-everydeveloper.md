@@ -24,7 +24,7 @@ tags:
   - Content
   - Storytelling
   - ProgrammableWeb
-partnerImage: https://api-evangelist.twic.pics/partners/bump-banner-728.png
+partnerImage: https://kinlane-productions2.s3.amazonaws.com/api-evangelist-partners/bump-banner-728.png
 partnerUrl: https://bit.ly/3MEOGa9
 partnerTitle: The API doc platform for Tech Writers & Engineers
 conversation:

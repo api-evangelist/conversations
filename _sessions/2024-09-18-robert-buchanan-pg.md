@@ -20,7 +20,7 @@ publish_date: "2024-09-18 15:00:00"
 url: https://conversations.apievangelist.com/sessions/2024-09-18-robert-buchanan-pg.html
 tags:
   - Consumer Goods
-partnerImage: https://api-evangelist.twic.pics/partners/bump-banner-728.png
+partnerImage: https://kinlane-productions2.s3.amazonaws.com/api-evangelist-partners/bump-banner-728.png
 partnerUrl: https://bit.ly/3MEOGa9
 partnerTitle: The API doc platform for Tech Writers & Engineers
 conversation: 
