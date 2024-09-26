@@ -38,7 +38,7 @@ conversation:
   - question: What does API standardization look like in your industry?
     answer: Sure. Well, it's kind of new in our industry. We are trying to use, uh, to adopt open API and we have, uh, an issue when the company buys another company. The acquisition It's kind of easy, but the merge it's, it's really, really hard. It takes months, maybe, maybe years and why? Because another company has some legacy applications. That don't speak well with our applications. So we are thinking about, uh, building on our standards to help the merge. So it's like buy in, but. Uh, conceptually it's like buy and, but in fact we are trying to, to build, actually to think about building a framework that will help, uh, the merge when the company decides to buy another, uh, company in the same industry.
 
-  - question: Why does your business leaders want to standardize APIs?
+  - question: Why do your business leaders want to standardize APIs?
     answer: It's kind of different from that because actually we wouldn't build something like that to open source. So we would do that to help our board to buy another company. Uh, in the last year they bought, I think, three companies. One of them is in United States. So the hard part is to integrate everything and manage the different applications. So under, under, um, unified framework will help to accelerate the merge that that's the, the, the idea basically. 
 
   - question: Is standardization about using 3rd party APIs?
@@ -50,6 +50,6 @@ conversation:
   - question: How do you get people to care about APIs?
     answer: This is another hard, hard part. Well, yeah, we, we try to think about only business aspects. We don't try to think about technical issues and other technical stuff. So when I say, uh, an API must be, uh, business representation and, uh, they kind of, well. But how, how do I get the data? Well, this is the second part. This is the API backend. We don't have to talk about technical aspects when we are talking about API design. And other stuff that they are related to API governance. So let's talk business. Let's talk about only business domain contexts and everything else. And later on, we talk about technical aspects. So I tried to get them only to talk about business and it's hard because to some, to some people, it's hard to abstract. The business through API, but it takes time, but it's done. 
 
-  - question: What keeps you going each day?
+  - question: What keeps you doing APis?
     answer: Well, it's been eight years. I've been working with API management before that I used to work as software developer in architect. So when I started to work with an API management solution, I thought this is good. I, I don't have to. To talk about front end or other parts of the software. I, I have room to think about the solution, the whole distributed system and how to connect those parts under the hood and sell it to developers to build another softwares over. That, that API infrastructure. So that I think that's the, the, the, the biggest, the biggest, uh, uh, incentive I have to keep working with APIs, building API infrastructure.
 ---
