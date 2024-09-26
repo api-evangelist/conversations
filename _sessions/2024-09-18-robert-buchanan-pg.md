@@ -1,6 +1,6 @@
 ---
 title: API Evangelist Conversation with Robert Buchanan, API Evangelist Driving API Integrations and API First practices at Procter & Gamble
-description: Robert came by to share his wisdom on why APIs matter and I can always count on him for hot takes on the realities of our API operations. Robert was a constant back channel during my Breaking Changes days, but I never managed to actually get him on the show. Robert and are in alignment on where most of the deficiencies exist across the API space and I'd that we both share higher "technological morals" about what makes good APIs and what contributes healthy API operations. I definitely will have Robert back to talk about all the hot button issues with me.
+description: Robert came by to share his wisdom on why APIs matter and I can always count on him for hot takes on the realities of our API operations. Robert was a constant back channel during my Breaking Changes days, but I never managed to actually get him on the show. Robert and are in alignment on where most of the deficiencies exist across the API space and I'd that we both share higher technological morals about what makes good APIs and what contributes healthy API operations. I definitely will have Robert back to talk about all the hot button issues with me.
 date: 2024-09-18
 youtubeId: b-OsSfhVHuw
 guestName: Robert Buchanan
