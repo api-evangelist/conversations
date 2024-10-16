@@ -4,6 +4,6 @@ bio: With a rich tapestry of over two decades in the software industry, I've cur
 role: Architect and API Integration
 company: Citrix
 industry: Cloud Computing
-image: /assets/img/people/sue-smith-headshot.jpeg
+image: /assets/img/people/subramanian-krishnan-headshot.jpeg
 obfuscated: false
 ---
