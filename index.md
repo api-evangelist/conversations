@@ -8,7 +8,7 @@ title: Conversations
     <table align="center" style="width: 250px;">
         <tr>
             <td style="width: 350px;" align="right">
-                <input type="text" class="form-control" id="api-search" style="width: 250px">
+                <input type="text" class="form-control" id="api-evangelist" style="width: 250px">
             </td>                            
             <td style="width: 50px;">
                 <button type="submit" class="btn btn-dark" onclick="search(); return false;">Search</button>
@@ -44,7 +44,7 @@ title: Conversations
     function search(){
         
         document.getElementById('search-results').innerHTML = "";
-        var search = document.getElementById('api-search').value;
+        var search = document.getElementById('api-evangelist').value;
         var sessions = JSON.parse(document.getElementById('search_json').value);
 
         var search_results = [];
