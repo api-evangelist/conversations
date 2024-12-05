@@ -17,7 +17,7 @@ youtubeId: V0uJskoEV1A
 sound_cloud: https://soundcloud.com/kinlane/api-evangelist-conversation-with-asanka-abeysinghe-cto-at-wso2
 duration: '0:16:27'
 publish_date: "2024-12-03 15:00:00"
-url: https://conversations.apievangelist.com/sessions/2024-11-01-greg-dennis-zeil.html
+url: https://conversations.apievangelist.com/sessions/2024-12-03-asanka-abeysinghe.html
 tags:
   - WSO2
   - Platforms
