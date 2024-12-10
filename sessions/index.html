@@ -10,7 +10,7 @@ title: Sessions
 			<h2>Conversations</h2>
 			<p>These are the conversations I have had so far. You can click in to each session to see the details, video, and transcript. I will work to add more links to services, tools, and other resources mentioned in the conversations, creating better show notes.</p>
 			{% assign sessions = site.sessions | reverse %}
-			{% include partner.html %}
+			
 			<table width="100%">
 			{% for session in sessions %}      
 				<tr>
@@ -28,7 +28,7 @@ title: Sessions
 				</tr>
 			{% endfor %}
 			</table>
-			{% include partner.html %}
+			
 		</div>
 		<div class="col-1"></div>
 	</div>
