@@ -1,6 +1,6 @@
 ---
 title: API Evangelist Conversation with Claire Barrett, Digital Strategist at APIsFirst
-description: Claire Barrett, Digital strategist at APIsFirst came by to talk with me about the realities on the ground with APIs in large enterprises and the increasing chatter regarding the return on investment APIs. Claire's view of things is what API service providers should be tuning into when it comes to aligning product with engineering, treating APIs as a product, and making sense of the real world things business leadership are looking for. I'm thankful for Claire's perspective, but also all the work she does around APIDays, and Women in APIs, but also just being outspoken about the business value of being API-first.
+description: Claire Barrett, Digital strategist at APIsFirst came by to talk with me about the realities on the ground with APIs in large enterprises and the increasing chatter regarding the return on investment APIs. Claire's view of things is what API service providers should be tuning into when it comes to aligning product with engineering, treating APIs as a product, and making sense of the real world things business leadership are looking for. I'm thankful for Claire's perspective, but also all the work she does around APIDays, and Women in APIs, but also just being outspoken about the business value of being API-first. 
 date: 2024-12-11
 guestName: Claire Barrett
 guestRole: Digital Strategist
@@ -12,11 +12,11 @@ obfuscated: false
 summary: Helping FInd Value With Our API Investments
 subtitle: Conversation with People Doing Interesting Things with APIs
 audio_file: https://kinlane-productions2.s3.us-east-1.amazonaws.com/api-evangelist-conversations/api-evangelist-conversation-claire-barrett-apisfirst.wav
-audio_length: 95103248    
-youtubeId: IvRmwiYdA_A
+audio_length: 107754040    
+youtubeId: s8DhZq-VROo
 sound_cloud: https://soundcloud.com/kinlane/api-evangelist-conversation-with-claire-barrett-digital-strategist-at-apisfirst
-duration: '0:17:58'
-publish_date: "2024-12-05 15:00:00"
+duration: '0:20:22'
+publish_date: "2024-12-11 15:00:00"
 url: https://conversations.apievangelist.com/sessions/2024-12-11-claire-barrett-apisfirst.html
 tags:
   - Business
