@@ -48,15 +48,15 @@ router.get('/', (req, resp)=>{
     page = 0;
   }
 
-  var count_sql = "SELECT count(name) as conversationCount FROM conversations WHERE name IS NOT NULL";
+  var count_sql = "SELECT count(title) as conversationCount FROM conversations WHERE title IS NOT NULL";
   if(search){
-    count_sql += " AND (name LIKE '%" + search + "%' OR description LIKE '%" + search + "%' OR tags LIKE '%" + search + "%')";
+    count_sql += " AND (title LIKE '%" + search + "%' OR description LIKE '%" + search + "%' OR tags LIKE '%" + search + "%')";
   }
   connection.query(count_sql, function (error, total, fields) { 
 
-    var conversations_sql = "SELECT * FROM conversations WHERE name IS NOT NULL";
+    var conversations_sql = "SELECT * FROM conversations WHERE title IS NOT NULL";
     if(search){
-      conversations_sql += " AND (name LIKE '%" + search + "%' OR description LIKE '%" + search + "%' OR tags LIKE '%" + search + "%')";
+      conversations_sql += " AND (title LIKE '%" + search + "%' OR description LIKE '%" + search + "%' OR tags LIKE '%" + search + "%')";
     }    
     conversations_sql += " LIMIT " + page + "," + limit;
 
@@ -97,7 +97,7 @@ router.post('/', jsonParser, (req, resp)=>{
   var organization = req.query.organization;
   var conversation = req.body;   
 
-  var check_conversation_sql = "SELECT * FROM conversations WHERE name = " +  connection.escape(conversation.name);
+  var check_conversation_sql = "SELECT * FROM conversations WHERE title = " +  connection.escape(conversation.title);
   connection.query(check_conversation_sql, function (error, exists, fields) {                   
 
     if(exists.length > 0){
@@ -107,22 +107,22 @@ router.post('/', jsonParser, (req, resp)=>{
     }
     else{
 
-      conversation.name = conversation.name.trim();
+      conversation.title = conversation.title.trim();
       conversation.description = conversation.description.trim();
-      conversation.slug = common.slugify(conversation.name);
+      conversation.slug = common.slugify(conversation.title);
       conversation.image = 'https://example.com/images.jpg';
       conversation.tags = ['New'];
       conversation.conversation = {};
 
       var markdown_conversation = '---\r\n' + yaml.dump(conversation) + '---\r\n';
 
-      var insert_conversation_sql = "INSERT INTO conversations(name,description,conversation) VALUES";
-      insert_conversation_sql += "(" + connection.escape(conversation.name) + "," + connection.escape(conversation.description) + "," + connection.escape(JSON.stringify(conversation)) + ")";
+      var insert_conversation_sql = "INSERT INTO conversations(title,description,conversation) VALUES";
+      insert_conversation_sql += "(" + connection.escape(conversation.title) + "," + connection.escape(conversation.description) + "," + connection.escape(JSON.stringify(conversation)) + ")";
       connection.query(insert_conversation_sql, function (error, insert_results, fields) {     
               
         conversation.id = insert_results.insertId;
 
-        var github_url = 'https://api.github.com/repos/' + organization + '/conversations/contents/_conversations/' + common.slugify(conversation.name) + '.md';     
+        var github_url = 'https://api.github.com/repos/' + organization + '/conversations/contents/_conversations/' + common.slugify(conversation.title) + '.md';     
 
         var c = {};
         c.name = "Kin Lane";
@@ -147,7 +147,7 @@ router.post('/', jsonParser, (req, resp)=>{
           .then(function(response) {
               if (!response.ok) {      
                 
-                var key = 'conversations/conversations/' + common.slugify(conversation.name) + '.md';
+                var key = 'conversations/conversations/' + common.slugify(conversation.title) + '.md';
                 var params = {
                   Bucket : bucket,
                   Key : key,
@@ -177,7 +177,7 @@ router.post('/', jsonParser, (req, resp)=>{
               }
               response.json().then(function(data) { 
 
-                var key = 'conversations/conversations/' + common.slugify(conversation.name) + '.md';
+                var key = 'conversations/conversations/' + common.slugify(conversation.title) + '.md';
                 var params = {
                   Bucket : bucket,
                   Key : key,

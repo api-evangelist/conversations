@@ -29,7 +29,7 @@ router.get('/', (req, resp)=>{
   var conversationId = req.params.conversationId;
   var organization = req.query.organization;
 
-  var conversations_sql = "SELECT * FROM conversations WHERE id = " + connection.escape(conversationId) + " OR slug = " + connection.escape(conversationId);
+  var conversations_sql = "SELECT * FROM conversations WHERE slug = " + connection.escape(conversationId);
   connection.query(conversations_sql, function (error, conversations, fields) { 
 
     var totalPages = 1;
@@ -86,11 +86,27 @@ router.put('/', jsonParser, (req, resp)=>{
       }       
 
       var update_conversation_sql = "UPDATE conversations SET ";
-      update_conversation_sql += "name = " + connection.escape(conversation.name) + ", ";
+      update_conversation_sql += "title = " + connection.escape(conversation.name) + ", ";
       update_conversation_sql += "description = " + connection.escape(conversation.description) + ", ";
-      update_conversation_sql += "slug = " + connection.escape(conversation.slug) + ", ";
-      update_conversation_sql += "image = " + connection.escape(conversation.image) + ", ";
+      update_conversation_sql += "slug = " + connection.escape(conversation.slug) + ", ";      
       update_conversation_sql += "tags = " + connection.escape(conversations_tags) + ", ";
+      update_conversation_sql += "date = " + connection.escape(conversation.date) + ", ";
+      update_conversation_sql += "guestName = " + connection.escape(conversation.guestName) + ", ";
+      update_conversation_sql += "guestRole = " + connection.escape(conversation.guestRole) + ", ";
+      update_conversation_sql += "guestCompany = " + connection.escape(conversation.guestCompany) + ", ";
+      update_conversation_sql += "guestIndustry = " + connection.escape(conversation.guestIndustry) + ", ";
+      update_conversation_sql += "guestImage = " + connection.escape(conversation.guestImage) + ", ";
+      update_conversation_sql += "bio = " + connection.escape(conversation.bio) + ", ";
+      update_conversation_sql += "obfuscated = " + connection.escape(conversation.obfuscated) + ", ";
+      update_conversation_sql += "summary = " + connection.escape(conversation.summary) + ", ";
+      update_conversation_sql += "subtitle = " + connection.escape(conversation.subtitle) + ", ";
+      update_conversation_sql += "audio_file = " + connection.escape(conversation.image) + ", ";
+      update_conversation_sql += "audio_length = " + connection.escape(conversation.audio_length) + ", ";
+      update_conversation_sql += "youtubeId = " + connection.escape(conversation.youtubeId) + ", ";
+      update_conversation_sql += "sound_cloud = " + connection.escape(conversation.sound_cloud) + ", ";
+      update_conversation_sql += "duration = " + connection.escape(conversation.duration) + ", ";
+      update_conversation_sql += "publish_date = " + connection.escape(conversation.publish_date) + ", ";
+      update_conversation_sql += "url = " + connection.escape(conversation.url) + ", ";
       update_conversation_sql += "conversation = " + connection.escape(JSON.stringify(conversation)) + " ";
       update_conversation_sql += "  WHERE slug = " + connection.escape(conversationId);
       

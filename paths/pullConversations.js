@@ -46,9 +46,8 @@ router.get('/', (req, resp)=>{
       else{
         var conversations_tags = '';
       }      
-
-      var conversations_sql = "INSERT INTO conversations(name,description,slug,image,tags,conversation) VALUES";
-      conversations_sql += "(" + connection.escape(conversation.name) + "," + connection.escape(conversation.description) + "," + connection.escape(conversation.slug) + "," + connection.escape(conversation.image) + "," + connection.escape(conversations_tags) + "," + connection.escape(JSON.stringify(conversation)) + ")";
+      var conversations_sql = "INSERT INTO conversations(title,description,slug,tags,date,guestName,guestRole,guestCompany,guestIndustry,guestImage,bio,obfuscated,summary,subtitle,audio_file,audio_length,youtubeId,sound_cloud,duration,publish_date,url,conversation) VALUES";
+      conversations_sql += "(" + connection.escape(conversation.title) + "," + connection.escape(conversation.description) + "," + connection.escape(conversation.slug) + "," + connection.escape(conversations_tags) + "," + connection.escape(date) + "," + connection.escape(guestName) + "," + connection.escape(guestRole) + "," + connection.escape(guestCompany) + "," + connection.escape(guestIndustry) + "," + connection.escape(guestImage) + "," + connection.escape(bio) + "," + connection.escape(obfuscated) + "," + connection.escape(summary) + "," + connection.escape(subtitle) + "," + connection.escape(audio_file) + "," + connection.escape(audio_length) + "," + connection.escape(youtubeId) + "," + connection.escape(sound_cloud) + "," + connection.escape(duration) + "," + connection.escape(publish_date) + "," + connection.escape(url) + "," + connection.escape(JSON.stringify(conversation)) + ")";
       connection.query(conversations_sql, function (error, results, fields) {
             
         process_conversations[i].processed = 1;
