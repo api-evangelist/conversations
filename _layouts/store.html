@@ -5,320 +5,6 @@ title: New Conversations
 nav: Conversations
 sub: All Conversations
 ---
-<script>
-  var conversationId = '{{ page.slug }}';
-  console.log("conversationId:" + conversationId);
-</script>
-
-<div id="save-banner" class="alert alert-danger" role="alert" style="text-align: center; display: none;">
-  You have made changes to the contract and will need to save.
-</div>
-
-<div id="commit-banner" class="alert alert-warning" role="alert" style="text-align: center; display: none;">
-  Changes have been made to this contract and will need committing to repo.
-</div>
-
-<div id="data-store" style="border: 1px solid #000; display: none;">
-  <input type="text" id="path" value="0">
-  <input type="text" id="page_start" value="0">
-  <input type="text" id="page_size" value="4">
-  <textarea id="conversations-store" style="width: 100%; height: 350px;"></textarea>
-  <textarea id="policies-store" style="width: 100%; height: 350px;"></textarea>
-  <textarea id="rules-store" style="width: 100%; height: 350px;"></textarea>
-  <textarea id="review-store" style="width: 100%; height: 350px;"></textarea>
-  <textarea id="review-filter" style="width: 100%; height: 350px;">[]</textarea>
-</div>
-
-<div class="row gx-xl-9">
-
-  <div class="col-12 col-xxl-4 order-xxl-1">
-
-    <div class="position-sticky mb-8" style="top: 2rem">
-      <div class="card bg-body">
-        <div class="card-body py-4">
-          <!-- List -->
-          <ul class="list-group list-group-flush bg-body mb-0">
-            
-            <!--Begin Save Conversation Button-->
-            <div style="display: none; border: 0px #FFF;" id="save-button-wrapper">
-              <li class="list-group-item d-flex align-items-center justify-content-between bg-body px-0" style="display: none; border-right: 0px #FFF; border-left: 0px #FFF; border-top: 0px #FFF;">
-                <span class="text-body-secondary text-danger"><strong>Save Conversation</strong></span>
-                <button id="save-button" type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#save-conversation">SAVE</button>
-              </li>  
-            </div> 
-            <!--End Save Conversation Button-->
-
-            <!--Begin Commit Conversation Button-->
-            <div style="display: none; border: 0px #FFF;" id="commit-button-wrapper">
-              <li class="list-group-item d-flex align-items-center justify-content-between bg-body px-0" style="display: none; border-right: 0px #FFF; border-left: 0px #FFF; border-top: 0px #FFF;">
-                <span class="text-body-secondary text-danger"><strong>Commit Conversation</strong></span>
-                <button id="commit-button" type="button" class="btn btn-danger btn-sm" onclick="commitConversation();">COMMIT</button>
-              </li>  
-            </div> 
-            <!--End Commit Conversation Button--> 
-
-            <li class="list-group-item d-flex align-items-center justify-content-between bg-body px-0">
-              <span class="text-body-secondary">Date Posted</span>
-              <time datetime="{{ page.date }}">{{ page.date }}</time>
-            </li>
-            <li class="list-group-item d-flex align-items-center justify-content-between bg-body px-0">
-              <span class="text-body-secondary">Name</span>
-              <span class="badge bg-success-subtle text-success">{{ page.guestName }}</span>
-            </li>
-            <li class="list-group-item d-flex align-items-center justify-content-between bg-body px-0">
-              <span class="text-body-secondary">Role</span>
-              <span class="badge bg-success-subtle text-success">{{ page.guestRole }}</span>
-            </li>
-            <li class="list-group-item d-flex align-items-center justify-content-between bg-body px-0">
-              <span class="text-body-secondary">Company</span>
-              <span class="badge bg-success-subtle text-success">{{ page.guestCompany }}</span>
-            </li>
-            <li class="list-group-item d-flex align-items-center justify-content-between bg-body px-0">
-              <span class="text-body-secondary">Industry</span>
-              <span class="badge bg-success-subtle text-success">{{ page.guestIndustry }}</span>
-            </li>                                                           
-
-            <!--Begin Execute Review Button-->
-            <div style="border: 0px #FFF;" id="review-button-wrapper">
-              <li class="list-group-item d-flex align-items-center justify-content-between bg-body px-0" style="display: none; border-right: 0px #FFF; border-left: 0px #FFF; border-top: 0px #FFF;">
-                <span class="text-body-secondary text-danger"><strong>Review</strong></span>
-                <button id="review-button" type="button" class="btn btn-success btn-sm" onclick="executeReview();">EXECUTE</button>
-              </li>  
-            </div> 
-            <!--End Execute Review Button-->    
-            <!--Begin Just-in-Time Conversation Guidance Kiosk-->
-            <div style="border: 1px #000;">
-              <li class="list-group-item d-flex align-items-center justify-content-between bg-body px-0" style="display: none; border-right: 1px #000; border-left: 0px #FFF; border-top: 0px #FFF;">
-                <div style="width: 75%;">
-                  <select style="width: 100%;" class="form-select" id="choices" onchange="filterReview();"></select> 
-                </div>
-                <div style="width: 25%;">               
-                  <input style="padding: 0px; margin: 0px;" type="radio" class="btn-check" name="severity-info" id="severity-info" autocomplete="off" checked>
-                  <label style="padding: 0px; margin: 0px;" class="btn btn-light btn-sm" for="severity-info"><span style="cursor:pointer; padding: 0px; margin: 0px;" class="material-symbols-outlined fs-6 text-success" onclick="" title="Info">check</span></label>
-                  <input style="padding: 0px; margin: 0px;" type="radio" class="btn-check" name="severity-hint" id="severity-hint" autocomplete="off">
-                  <label style="padding: 0px; margin: 0px;" class="btn btn-light btn-sm" for="severity-hint"><span style="cursor:pointer; padding: 0px; margin: 0px;" class="material-symbols-outlined fs-6 text-info" onclick="" title="Hint">reminder</span></label>                   
-                  <input style="padding: 0px; margin: 0px;" type="radio" class="btn-check" name="severity-error" id="severity-error" autocomplete="off">
-                  <label style="padding: 0px; margin: 0px;" class="btn btn-light btn-sm" for="severity-error"><span style="cursor:pointer; padding: 0px; margin: 0px;" class="material-symbols-outlined fs-6 text-danger" onclick="" title="Error">close</span></label>                   
-                  <input style="padding: 0px; margin: 0px;" type="radio" class="btn-check" name="severity-warn" id="severity-warn" autocomplete="off">
-                  <label style="padding: 0px; margin: 0px;" class="btn btn-light btn-sm" for="severity-warn"><span style="cursor:pointer; padding: 0px; margin: 0px;" class="material-symbols-outlined fs-6 text-warning" onclick="" title="Warn">warning</span></label>                                     
-                </div>
-              </li>                
-            </div> 
-            <!--End Just-in-Time Conversation Guidance Kiosk-->           
-            <div style="border: 0px #FFF; height: 280px; overflow: auto;" id="jit-guidance-wrapper"></div>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="col-12 col-xxl-8 order-xxl-0">
-
-    <section>
-      <div class="row">
-        <div class="col">
-  
-          <!-- Heading -->
-          <span style="float: right; cursor:pointer" class="material-symbols-outlined fs-1 text-success" data-bs-toggle="modal" data-bs-target="#edit-conversation">edit_square</span>
-          <h1 class="fs-3 mb-5" id="conversation-name-header">{{ page.title }}</h1>
-          <!-- Text -->
-          <p id="conversation-description-paragraph">{{ page.description }}</p>
-  
-          {% if page.obfuscated == true %}
-          <div class="alert alert-danger" role="alert" style="text-align: center; font-weight: bold;">
-              OFF THE RECORD!!
-          </div>   
-          {% endif %}              
-          <center><iframe width="560" height="315" src="https://www.youtube.com/embed/{{ page.youtubeId }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></center>
-          {% if page.obfuscated == true %}
-          <br>
-          <div class="alert alert-danger" role="alert" style="text-align: center; font-weight: bold;">
-              OFF THE RECORD!!
-          </div>   
-          {% endif %}                
-          <br>
-          <h2>Conversation</h2>
-          {% for question in page.conversation %}      
-                    <div class="row" style="margin-bottom: 15px;">
-              <div class="col-4" style="text-align: right;">
-                <strong>{{ question.question }}</strong>
-                        </div>
-              <div class="col-8">
-                {{ question.answer }}
-              </div>                    
-            </div>
-          {% endfor %} 
-
-        </div>
-      </div>
-    </section>
-
-    <!-- Divider -->
-    <hr class="my-8" />
-
-    <script>
-      var require = { paths: { vs: '/assets/js/monaco-editor/min/vs' } };
-    </script>
-    <script src="/assets/js/monaco-editor/min/vs/loader.js"></script>
-    <script src="/assets/js/monaco-editor/min/vs/editor/editor.main.js"></script>
-    
-    
-    <!-- Begin Conversation Editor -->
-    <section class="mb-8">
-
-      <!-- Conversation Editor Header -->
-      <div class="row align-items-center justify-content-between mb-5">
-        <div class="col">
-          <h2 class="fs-5 mb-0">Conversation Editor</h2>
-        </div>
-        <div class="col-auto"><!--NOTHING--></div>
-      </div>
-     <!-- Conversation Editor Header -->
-    
-      <!-- Conversation Editor Listing -->
-      <a name="monaco"></a>
-      <div id="conversation-editor" style="width: 100%; height: 450px; margin: 10px;"></div>
-      <script>
-        var ConversationEditor = monaco.editor.create(document.getElementById('conversation-editor'), {
-          value: [''].join('\n'),
-          language: 'yaml'
-        });
-
-        ConversationEditor.getModel().onDidChangeContent((event) => {
-          if(event.isFlush){
-            // Setting up
-          }
-          else{
-            saveConversationLocal(); 
-          }
-        });        
-      </script>  
-      <!-- Conversation Properties Listing -->
-    
-    </section>   
-    <!-- End Conversation Editor -->      
-
-    <section>
-      <div class="row">
-        <div class="col">
-
-          <!-- Heading -->
-          <h3 class="fs-base fw-normal text-body-secondary mt-5">Stakeholders</h3>
-
-          <!-- Avatar group -->
-          <div class="avatar-group">
-              <div class="avatar avatar-sm">
-              <img class="avatar-img" src="/assets/img/photos/photo-2.jpg" alt="..." />
-              </div>
-              <div class="avatar avatar-sm">
-              <img class="avatar-img" src="/assets/img/photos/photo-3.jpg" alt="..." />
-              </div>
-              <div class="avatar avatar-sm">
-              <img class="avatar-img" src="/assets/img/photos/photo-4.jpg" alt="..." />
-              </div>
-              <div class="avatar avatar-sm">
-              <img class="avatar-img" src="/assets/img/photos/photo-5.jpg" alt="..." />
-              </div>
-          </div>
-  
-        </div>
-      </div>
-    </section>    
-
-    <section>
-      <!-- Heading -->
-      <h2 class="fs-5 mb-5">Activity</h2>
-  
-      <!-- Activity (form) -->
-      <form class="mb-5">
-        <div class="form-control mb-1" id="tiptapExample" data-placeholder="Enter your comment..."></div>
-        <div class="text-end">
-          <button class="btn btn-sm btn-link text-body-secondary">Clear</button>
-          <button class="btn btn-sm btn-light">Send</button>
-        </div>
-      </form>
-  
-      <!-- Activity (items)  -->
-      <div class="row gx-3 mb-4">
-        <div class="col-auto">
-          <!-- Avatar -->
-          <div class="avatar">
-            <img class="avatar-img" src="/assets/img/photos/photo-2.jpg" alt="..." />
-          </div>
-        </div>
-        <div class="col">
-          <!-- Card -->
-          <div class="card bg-body-tertiary border-transparent mb-0">
-            <div class="card-body p-4">
-              <!-- Header -->
-              <div class="row align-items-center mb-2">
-                <div class="col">
-                  <!-- Heading -->
-                  <h6 class="fs-sm fw-normal text-body-secondary mb-0">Michael Johnson · 1d ago</h6>
-                </div>
-                <div class="col-auto">
-                  <!-- Dropdown -->
-                  <div class="dropdown">
-                    <span class="material-symbols-outlined text-body-secondary" role="button" data-bs-toggle="dropdown"
-                      aria-expanded="false">more_horiz</span>
-                    <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="#">Action</a></li>
-                      <li><a class="dropdown-item" href="#">Another action</a></li>
-                      <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-  
-              <!-- Text -->
-              <p class="mb-0">Just finished the design for the new filters. What do you think?</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-  </div>
-</div>
-
-<script>    
-
-  function getConversation(){
-    const options = {
-        method: 'GET'
-    };  
-    fetch('{{ site.conversationsApiBaseUrl }}/conversations/' + conversationId,options)
-        .then(function(response) {
-            if (!response.ok) {
-                console.log('Error with Status Code: ' + response.status);
-            }
-            response.json().then(function(response) {               
-
-              var conversation = JSON.parse(response.data.conversation);
-              
-              document.getElementById("conversation-name-header").innerHTML = response.data.name;
-              document.getElementById("conversation-description-paragraph").innerHTML = response.data.description;
-            
-              var conversation_yaml = jsyaml.dump(conversation);
-              ConversationEditor.setValue(conversation_yaml);
-
-              // Any changes?
-              if(response.data.changes == 1){
-                document.getElementById("commit-banner").style.display = '';
-                document.getElementById("commit-button-wrapper").style.display = '';             
-              }              
-
-
-            });
-          })
-          .catch(function(err) {
-              console.log('Error: ' + err);
-      });  
-  }
-
-  getConversation();
-
-</script>
 
 <!-- MODALS -->
 
@@ -389,7 +75,255 @@ sub: All Conversations
 <!-- MODALS -->
 
 <script>
-  // Edit Conversation Icon Click
+  var conversationId = '{{ page.slug }}';
+  console.log("conversationId:" + conversationId);
+</script>
+
+<div id="save-banner" class="alert alert-danger" role="alert" style="text-align: center; display: none;">
+  You have made changes to the contract and will need to save.
+</div>
+
+<div id="commit-banner" class="alert alert-warning" role="alert" style="text-align: center; display: none;">
+  Changes have been made to this contract and will need committing to repo.
+</div>
+
+<div id="data-store" style="border: 1px solid #000; display: none;">
+  <input type="text" id="path" value="0">
+  <input type="text" id="page_start" value="0">
+  <input type="text" id="page_size" value="4">
+  <textarea id="conversations-store" style="width: 100%; height: 350px;"></textarea>
+  <textarea id="policies-store" style="width: 100%; height: 350px;"></textarea>
+  <textarea id="rules-store" style="width: 100%; height: 350px;"></textarea>
+  <textarea id="review-store" style="width: 100%; height: 350px;"></textarea>
+  <textarea id="review-filter" style="width: 100%; height: 350px;">[]</textarea>
+</div>
+
+<div class="row gx-xl-9">
+
+  <div class="col-12 col-xxl-4 order-xxl-1">
+
+    <div class="position-sticky mb-8" style="top: 2rem">
+      <div class="card bg-body">
+        <div class="card-body py-4">
+          <!-- List -->
+          <ul class="list-group list-group-flush bg-body mb-0">
+            
+            <!--Begin Save Conversation Button-->
+            <div style="display: none; border: 0px #FFF;" id="save-button-wrapper">
+              <li class="list-group-item d-flex align-items-center justify-content-between bg-body px-0" style="display: none; border-right: 0px #FFF; border-left: 0px #FFF; border-top: 0px #FFF;">
+                <span class="text-body-secondary text-danger"><strong>Save Conversation</strong></span>
+                <button id="save-button" type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#save-conversation">SAVE</button>
+              </li>  
+            </div> 
+            <!--End Save Conversation Button-->
+
+            <!--Begin Commit Conversation Button-->
+            <div style="display: none; border: 0px #FFF;" id="commit-button-wrapper">
+              <li class="list-group-item d-flex align-items-center justify-content-between bg-body px-0" style="display: none; border-right: 0px #FFF; border-left: 0px #FFF; border-top: 0px #FFF;">
+                <span class="text-body-secondary text-danger"><strong>Commit Conversation</strong></span>
+                <button id="commit-button" type="button" class="btn btn-danger btn-sm" onclick="commitConversation();">COMMIT</button>
+              </li>  
+            </div> 
+            <!--End Commit Conversation Button--> 
+
+            <li class="list-group-item d-flex align-items-center justify-content-between bg-body px-0">
+              <span class="text-body-secondary">Date Published</span>
+              <time datetime="{{ page.date }}">{{ page.date | date: "%b %d, %Y" }}</time>
+            </li>
+            <li class="list-group-item d-flex align-items-center justify-content-between bg-body px-0">
+              <span class="text-body-secondary">Name</span>
+              <span class="badge bg-success-subtle text-success">{{ page.guestName }}</span>
+            </li>
+            <li class="list-group-item d-flex align-items-center justify-content-between bg-body px-0">
+              <span class="text-body-secondary">Role</span>
+              <span class="badge bg-success-subtle text-success">{{ page.guestRole }}</span>
+            </li>
+            <li class="list-group-item d-flex align-items-center justify-content-between bg-body px-0">
+              <span class="text-body-secondary">Company</span>
+              <span class="badge bg-success-subtle text-success">{{ page.guestCompany }}</span>
+            </li>
+            <li class="list-group-item d-flex align-items-center justify-content-between bg-body px-0">
+              <span class="text-body-secondary">Industry</span>
+              <span class="badge bg-success-subtle text-success">{{ page.guestIndustry }}</span>
+            </li>                                                           
+
+            <!--Begin Execute Review Button-->
+            <div style="border: 0px #FFF;" id="review-button-wrapper">
+              <li class="list-group-item d-flex align-items-center justify-content-between bg-body px-0" style="display: none; border-right: 0px #FFF; border-left: 0px #FFF; border-top: 0px #FFF;">
+                <span class="text-body-secondary text-danger"><strong>Review</strong></span>
+                <button id="review-button" type="button" class="btn btn-success btn-sm" onclick="executeReview();">EXECUTE</button>
+              </li>  
+            </div> 
+            <!--End Execute Review Button-->    
+            <!--Begin Just-in-Time Conversation Guidance Kiosk-->
+            <div style="border: 1px #000;">
+              <li class="list-group-item d-flex align-items-center justify-content-between bg-body px-0" style="display: none; border-right: 1px #000; border-left: 0px #FFF; border-top: 0px #FFF;">
+                <div style="width: 75%;">
+                  <select style="width: 100%;" class="form-select" id="choices" onchange="filterReview();"></select> 
+                </div>
+                <div style="width: 25%;">               
+                  <input style="padding: 0px; margin: 0px;" type="radio" class="btn-check" name="severity-info" id="severity-info" autocomplete="off" checked>
+                  <label style="padding: 0px; margin: 0px;" class="btn btn-light btn-sm" for="severity-info"><span style="cursor:pointer; padding: 0px; margin: 0px;" class="material-symbols-outlined fs-6 text-success" onclick="" title="Info">check</span></label>
+                  <input style="padding: 0px; margin: 0px;" type="radio" class="btn-check" name="severity-hint" id="severity-hint" autocomplete="off">
+                  <label style="padding: 0px; margin: 0px;" class="btn btn-light btn-sm" for="severity-hint"><span style="cursor:pointer; padding: 0px; margin: 0px;" class="material-symbols-outlined fs-6 text-info" onclick="" title="Hint">reminder</span></label>                   
+                  <input style="padding: 0px; margin: 0px;" type="radio" class="btn-check" name="severity-error" id="severity-error" autocomplete="off">
+                  <label style="padding: 0px; margin: 0px;" class="btn btn-light btn-sm" for="severity-error"><span style="cursor:pointer; padding: 0px; margin: 0px;" class="material-symbols-outlined fs-6 text-danger" onclick="" title="Error">close</span></label>                   
+                  <input style="padding: 0px; margin: 0px;" type="radio" class="btn-check" name="severity-warn" id="severity-warn" autocomplete="off">
+                  <label style="padding: 0px; margin: 0px;" class="btn btn-light btn-sm" for="severity-warn"><span style="cursor:pointer; padding: 0px; margin: 0px;" class="material-symbols-outlined fs-6 text-warning" onclick="" title="Warn">warning</span></label>                                     
+                </div>
+              </li>                
+            </div> 
+            <!--End Just-in-Time Conversation Guidance Kiosk-->           
+            <div style="border: 0px #FFF; height: 280px; overflow: auto;" id="jit-guidance-wrapper"></div>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 col-xxl-8 order-xxl-0">
+
+    <section>
+      <div class="row">
+        <div class="col">
+  
+          <!-- Heading -->
+          <span style="float: right; cursor:pointer" class="material-symbols-outlined fs-1 text-success" data-bs-toggle="modal" data-bs-target="#edit-conversation">edit_square</span>
+          <h1 class="fs-3 mb-3" id="conversation-name-header">{{ page.title }}</h1>
+          <!-- Text -->
+          <p id="conversation-description-paragraph">{{ page.description }}</p>
+  
+          {% if page.obfuscated == true %}
+          <div class="alert alert-danger" role="alert" style="text-align: center; font-weight: bold;">
+              OFF THE RECORD!!
+          </div>   
+          {% endif %}              
+          <center><iframe width="560" height="315" src="https://www.youtube.com/embed/{{ page.youtubeId }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></center>
+          {% if page.obfuscated == true %}
+          <br>
+          <div class="alert alert-danger" role="alert" style="text-align: center; font-weight: bold;">
+              OFF THE RECORD!!
+          </div>   
+          {% endif %}                
+          <br>
+          <h1 class="fs-3 mb-2" id="conversation-subtitle">Conversation</h1>
+          {% for question in page.conversation %}      
+                    <div class="row" style="margin-bottom: 15px;">
+              <div class="col-4" style="text-align: right;">
+                <strong>{{ question.question }}</strong>
+                        </div>
+              <div class="col-8">
+                {{ question.answer }}
+              </div>                    
+            </div>
+          {% endfor %} 
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Divider -->
+    <hr class="my-8" />
+
+    <script>
+      var require = { paths: { vs: '/assets/js/monaco-editor/min/vs' } };
+    </script>
+    <script src="/assets/js/monaco-editor/min/vs/loader.js"></script>
+    <script src="/assets/js/monaco-editor/min/vs/editor/editor.main.js"></script>
+    
+    
+
+    <!-- Begin Conversation Editor -->
+    <section class="mb-8">   
+      
+      <script>
+        var require = { paths: { vs: '/assets/js/monaco-editor/min/vs' } };
+      </script>
+      <script src="/assets/js/monaco-editor/min/vs/loader.js"></script>
+      <script src="/assets/js/monaco-editor/min/vs/editor/editor.main.js"></script>          
+
+      <div class="accordion" id="conversationEditorBox">
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#conversationEditorWrapper" aria-expanded="true" aria-controls="conversationEditorWrapper">
+              Editor
+            </button>
+          </h2>
+          <div id="conversationEditorWrapper" class="accordion-collapse collapse show" data-bs-parent="#conversationEditorBox">
+            <div class="accordion-body">
+
+            <!-- Conversation Editor Listing -->
+            <a name="monaco"></a>
+            <div id="conversation-editor" style="width: 100%; height: 450px; margin: 10px;"></div>
+            <script>
+              var ConversationEditor = monaco.editor.create(document.getElementById('conversation-editor'), {
+                value: [''].join('\n'),
+                language: 'markdown',
+                options:{
+                      wordWrap: "on",
+                    }       
+              });
+
+              ConversationEditor.updateOptions({ wordWrap: "on" })
+              ConversationEditor.getModel().onDidChangeContent((event) => {
+                if(event.isFlush){
+                  // Setting up
+                }
+                else{
+                  saveConversationLocal(); 
+                }
+              });        
+            </script>  
+            <!-- Conversation Properties Listing -->
+
+          </div>
+        </div>
+      </div>
+      </div>         
+    
+    </section>   
+    <!-- End Conversation Editor -->   
+   
+  </div>
+</div>
+
+<script>    
+
+  function getConversation(){
+    const options = {
+        method: 'GET'
+    };  
+    fetch('{{ site.conversationsApiBaseUrl }}/conversations/' + conversationId,options)
+        .then(function(response) {
+            if (!response.ok) {
+                console.log('Error with Status Code: ' + response.status);
+            }
+            response.json().then(function(response) {               
+
+              var conversation = JSON.parse(response.data.conversation);
+              
+              document.getElementById("conversation-name-header").innerHTML = response.data.title;
+              document.getElementById("conversation-description-paragraph").innerHTML = response.data.description;
+            
+              var conversation_yaml = jsyaml.dump(conversation);
+              ConversationEditor.setValue(conversation_yaml);
+
+              // Any changes?
+              if(response.data.changes == 1){
+                document.getElementById("commit-banner").style.display = '';
+                document.getElementById("commit-button-wrapper").style.display = '';             
+              }              
+
+
+            });
+          })
+          .catch(function(err) {
+              console.log('Error: ' + err);
+      });  
+  }
+
+  getConversation();
+
   const editConversation = document.getElementById('edit-conversation');
   editConversation.addEventListener('shown.bs.modal', () => {
     document.getElementById("conversation-name").value = document.getElementById("conversation-name-header").innerHTML;
@@ -404,7 +338,7 @@ sub: All Conversations
     var conversation_yaml = ConversationEditor.getValue();
     var conversation = jsyaml.load(conversation_yaml);
 
-    conversation.name = conversationName;
+    conversation.title = conversationName;
     conversation.description = conversationDescription;
 
     //conversation_yaml = jsyaml.dump(conversation);  
@@ -420,7 +354,7 @@ sub: All Conversations
     var conversation_yaml = ConversationEditor.getValue();
     var conversation = jsyaml.load(conversation_yaml);
   
-    var conversationName = conversation.name
+    var conversationName = conversation.title
     var conversationDescription = conversation.description;
 
     // Update Conversation
@@ -490,11 +424,11 @@ sub: All Conversations
     var conversation = jsyaml.load(conversation_yaml);
 
     // Update Conversation
-    var conversationName = conversation.name;
+    var conversationName = conversation.title;
     var conversationDescription = conversation.description; 
     var conversation_yaml = ConversationEditor.getValue();
     var conversation = jsyaml.load(conversation_yaml);  
-    conversation.name = conversationName;
+    conversation.title = conversationName;
     conversation.description = conversationDescription;
     document.getElementById("conversation-name-header").innerHTML = conversationName;
     document.getElementById("conversation-description-paragraph").innerHTML = conversationDescription;
@@ -672,7 +606,7 @@ function commitConversation(){
     var filter_conversations = [];
   
     for (let i = 0; i < conversations.length; i++) {
-      if(conversations[i].name == filter_by){          
+      if(conversations[i].title == filter_by){          
   
         for (let j = 0; j < conversations.length; j++) {
   
@@ -688,7 +622,7 @@ function commitConversation(){
   
           if(conversation_match_1 == 1){
               
-            var conversation_name = conversations[j].name;
+            var conversation_name = conversations[j].title;
             var conversation = JSON.parse(conversations[j].conversation);          
             var conversation_slug = conversations[j].slug; 
   
@@ -696,7 +630,7 @@ function commitConversation(){
   
               for (let k = 0; k < conversation.conversations.length; k++) {
   
-                  if(conversation.conversations[k] == conversations[i].name){
+                  if(conversation.conversations[k] == conversations[i].title){
             
                     // Go through Conversations
                     if(conversation.conversations){
@@ -865,4 +799,7 @@ function commitConversation(){
     location.href = '#monaco';
   
   }
+
+  //Close Editor
+  document.getElementById("conversationEditorWrapper").classList.remove('show');
   </script>

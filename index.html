@@ -53,6 +53,9 @@ sub: All Conversations
 <div id="error-banner" class="alert alert-danger" role="alert" style="text-align: center; display: none;">
     ERROR!!
 </div>  
+<div id="process-banner" class="alert alert-danger" role="alert" style="text-align: center; display: none;">
+    RUNNING!!
+</div>  
 
 <div class="row align-items-center mb-7">
     <div class="col-auto">
@@ -115,7 +118,7 @@ sub: All Conversations
             <table class="table table-flush align-middle mb-0">
               <tbody id="conversation-listing">
 
-                {% assign conversations = site.store | sort: 'date' | sort: 'date' %}
+                {% assign conversations = site.store | sort: 'date' | reverse %}
                 {% for conversation in conversations %}  
                 <tr>
                     <td>
@@ -267,6 +270,8 @@ function processConversations(){
     if(Cookies.get('access_token')){
 
         document.getElementById("error-banner").style.display = 'none';
+        document.getElementById("process-banner").style.display = '';
+        document.getElementById("process-banner").innerHTML = 'Processing Conversations...';
 
         var organization = "api-evangelist";
 
@@ -288,6 +293,7 @@ function processConversations(){
             response.json().then(function (response) {
 
                 console.log("DONE!");
+                document.getElementById("process-banner").style.display = 'none';           
 
             });
         })
@@ -308,6 +314,8 @@ function pullConversations(){
     if(Cookies.get('access_token')){
 
         document.getElementById("error-banner").style.display = 'none';
+        document.getElementById("process-banner").style.display = '';
+        document.getElementById("process-banner").innerHTML = 'Pulling Conversations...';        
 
         var organization = "api-evangelist";
 
@@ -329,11 +337,12 @@ function pullConversations(){
             response.json().then(function (response) {
             if(response.message == "DONE"){
                 console.log("DONE!");
+                document.getElementById("process-banner").style.display = 'none';
             }
             else{
-            document.getElementById("results").innerHTML += response.message + '<br>';
+                document.getElementById("process-banner").innerHTML = 'Pulling Conversations...' + response.path;    
                 setTimeout(function() {
-                pullRepos();
+                pullConversations();
             }, 1500);        
             }
 
