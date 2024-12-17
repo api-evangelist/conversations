@@ -2,14 +2,57 @@
 layout: default
 section: Conversations
 title: Conversations
-summary: Governing the business details of operating an API in a consistent way, no matter the team who developed it.
+summary: Conversations with interesting people doing interesting things with APIs.
 nav: Conversations
 sub: All Conversations
 ---
 
+
+<!-- MODALS -->
+
+<!-- BEGIN EDIT RULE -->
+<div class="modal" tabindex="-1" id="add-conversation">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add Conversation</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-8">
+            <label for="conversation-name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="conversation-name">
+          </div>
+          <div class="mb-8">
+            <label for="conversation-description" class="form-label">Description</label>
+            <textarea class="form-control" id="conversation-description" rows="10"></textarea>
+          </div>
+          <center>
+            <script>
+              function stripHTMLFromDescription(){
+                var description = document.getElementById("conversation-description").value;
+                description = stripHTML(description);
+                document.getElementById("conversation-description").value = description;
+              }
+            </script>
+            <a style="float: right; cursor:pointer" class="material-symbols-outlined fs-1 text-success" href="#" onclick="stripHTMLFromDescription();">code_off</a>
+          </center>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" onclick="addConversation();" data-bs-dismiss="modal">Add Conversation</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- END EDIT RULE -->
+
 <div id="add-banner" class="alert alert-danger" role="alert" style="text-align: center; display: none;">
     You have added a new conversation.
-  </div>
+</div>
+<div id="error-banner" class="alert alert-danger" role="alert" style="text-align: center; display: none;">
+    ERROR!!
+</div>  
 
 <div class="row align-items-center mb-7">
     <div class="col-auto">
@@ -31,6 +74,12 @@ sub: All Conversations
     <div class="col-12 col-sm-auto mt-4 mt-sm-0">
         <a class="btn btn-secondary d-block" data-bs-toggle="modal" data-bs-target="#add-conversation"> <span class="material-symbols-outlined me-1">add</span> New Conversation</a>
     </div>
+    <div class="col-12 col-sm-auto mt-4 mt-sm-0">
+        <a class="btn btn-secondary d-block" href="#" onclick="processConversations(); return false;"> <span class="material-symbols-outlined me-1" id="pull-index">add</span> Process</a>
+    </div>     
+    <div class="col-12 col-sm-auto mt-4 mt-sm-0">
+        <a class="btn btn-secondary d-block" href="#" onclick="pullConversations(); return false;"> <span class="material-symbols-outlined me-1" id="pull-index">add</span> Pull</a>
+    </div>       
 </div>
 
 <div class="row"></div>
@@ -56,127 +105,6 @@ sub: All Conversations
                                     </span>
                                 </div>
                             </div>
-                            <div class="col-auto">
-                                <div class="dropdown">
-                                    <button class="btn btn-dark px-3" data-bs-toggle="dropdown"
-                                        data-bs-auto-close="outside" aria-expanded="false">
-                                        <span class="material-symbols-outlined">filter_list</span>
-                                    </button>
-                                    <div class="dropdown-menu rounded-3 p-6">
-                                        <h4 class="fs-lg mb-4">Filter</h4>
-                                        <form style="width: 350px" id="filterForm">
-                                            <div class="row align-items-center mb-3">
-                                                <div class="col-3">
-                                                    <label class="form-label mb-0" for="filterUser">User</label>
-                                                </div>
-                                                <div class="col-9">
-                                                    <select class="form-select" id="filterUser" data-choices='{"searchEnabled": false, "choices": [
-{
-"value": "Emily Thompson",
-"label": "Emily Thompson",
-"customProperties": {
-"avatarSrc": "/assets/img/photos/photo-1.jpg"
-}
-},
-{
-"value": "Michael Johnson",
-"label": "Michael Johnson",
-"customProperties": {
-"avatarSrc": "/assets/img/photos/photo-2.jpg"
-}
-},
-{
-"value": "Robert Garcia",
-"label": "Robert Garcia",
-"customProperties": {
-"avatarSrc": "/assets/img/photos/photo-3.jpg"
-}
-},
-{
-"value": "Jessica Miller",
-"label": "Jessica Miller",
-"customProperties": {
-"avatarSrc": "/assets/img/photos/photo-4.jpg"
-}
-}
-]}'></select>
-                                                </div>
-                                            </div>
-                                            <div class="row align-items-center mb-3">
-                                                <div class="col-3">
-                                                    <label class="form-label mb-0" for="filterCompany">Company</label>
-                                                </div>
-                                                <div class="col-9">
-                                                    <select class="form-select" id="filterCompany"
-                                                        data-choices='{"placeholder": "some"}'>
-                                                        <option value="TechPinnacle Solutions">TechPinnacle Solutions
-                                                        </option>
-                                                        <option value="Quantum Dynamics">Quantum Dynamics</option>
-                                                        <option value="Pinnacle Technologies">Pinnacle Technologies
-                                                        </option>
-                                                        <option value="Apex Innovations">Apex Innovations</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="row align-items-center">
-                                                <div class="col-3">
-                                                    <label class="form-label mb-0" for="filterLocation">Location</label>
-                                                </div>
-                                                <div class="col-9">
-                                                    <select class="form-select" id="filterLocation" data-choices>
-                                                        <option value="San Francisco, CA">San Francisco, CA</option>
-                                                        <option value="Austin, TX">Austin, TX</option>
-                                                        <option value="Miami, FL">Miami, FL</option>
-                                                        <option value="Seattle, WA">Seattle, WA</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-auto ms-n2">
-                                <div class="dropdown">
-                                    <button class="btn btn-dark px-3" data-bs-toggle="dropdown"
-                                        data-bs-auto-close="outside" aria-expanded="false">
-                                        <span class="material-symbols-outlined">sort_by_alpha</span>
-                                    </button>
-                                    <div class="dropdown-menu rounded-3 p-6">
-                                        <h4 class="fs-lg mb-4">Sort</h4>
-                                        <form style="width: 350px" id="filterForm">
-                                            <div class="row gx-3">
-                                                <div class="col">
-                                                    <select class="form-select" id="sort"
-                                                        data-choices='{"searchEnabled": false}'>
-                                                        <option value="user">User</option>
-                                                        <option value="company">Company</option>
-                                                        <option value="phone">Phone</option>
-                                                        <option value="location">Location</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-auto">
-                                                    <div class="btn-group" role="group"
-                                                        aria-label="Basic radio toggle button group">
-                                                        <input type="radio" class="btn-check" name="sortRadio"
-                                                            id="sortAsc" autocomplete="off" checked />
-                                                        <label class="btn btn-light" for="sortAsc"
-                                                            data-bs-toggle="tooltip" data-bs-title="Ascending">
-                                                            <span class="material-symbols-outlined">arrow_upward</span>
-                                                        </label>
-                                                        <input type="radio" class="btn-check" name="sortRadio"
-                                                            id="sortDesc" autocomplete="off" />
-                                                        <label class="btn btn-light" for="sortDesc"
-                                                            data-bs-toggle="tooltip" data-bs-title="Descending">
-                                                            <span
-                                                                class="material-symbols-outlined">arrow_downward</span>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -187,23 +115,20 @@ sub: All Conversations
             <table class="table table-flush align-middle mb-0">
               <tbody id="conversation-listing">
 
-                {% assign conversations = site.store %}
+                {% assign conversations = site.store | sort: 'date' | sort: 'date' %}
                 {% for conversation in conversations %}  
                 <tr>
-                    <td width="25%">
-                        <div class="d-flex align-items-center">
-                            <span class="material-symbols-outlined fs-1 text-primary">person_play</span>
+                    <td>
+                        <div class="d-flex align-items-center">                            
+                            <img src="https://i.ytimg.com/vi/{{ conversation.youtubeId }}/hqdefault.jpg" width="90" style="border-radius: 15px; background: #000; padding: 3px; width: 95px;">
                             <div class="ms-4">
                                 <div><a href="/store/{{ conversation.slug }}">{{ conversation.title }}</a></div>
                             </div>
                         </div>
                     </td>
-                    <td width="60%">
-                        <div class="ms-4">{{ conversation.description }}</div>
-                    </td>
-                    <td width="15%">
+                    <td>
                         <div class="ms-4">    
-                            <a href="/store/{{ conversation.slug }}"><button type="button" class="btn btn-success">View Details</button></a><a href="{{ conversation.url }}"></a>
+                            <a href="/store/{{ conversation.slug }}"><button class="btn btn-sm btn-light">View</button></a>
                         </div>
                     </td>                    
                 </tr>   
@@ -259,11 +184,8 @@ sub: All Conversations
                     var conversation = JSON.parse(response.data[i].conversation);
     
                     html += '<tr>';
-                    html += '<td width="35%">';
+                    html += '<td>';
                     html += '<div class="d-flex align-items-center">';
-                    //html += '<div class="avatar">';
-                    //html += '<img class="avatar-img" src="https://apievangelist.com' + response.data[i].image + '" alt="' + response.data[i].name + '" />';
-                    //html += '</div>';
                     html += '<span class="material-symbols-outlined fs-1 text-primary">person_play</span>';
                     html += '<div class="ms-4">';
                     html += '<div><a href="/store/' + conversationId + '">' + response.data[i].name + '</a></div>';
@@ -271,14 +193,9 @@ sub: All Conversations
                     html += '</div>';
                     html += '</div>';
                     html += '</td>';
-                    html += '<td width="50%">';
+                    html += '<td>';
                     html += '<div class="ms-4">';    
-                    html += response.data[i].description;
-                    html += '</div>';
-                    html += '</td>';
-                    html += '<td width="15%">';
-                    html += '<div class="ms-4">';    
-                    html += '<a href="/store/' + conversationId + '"><button type="button" class="btn btn-success">View Details</button></a>';
+                    html += '<a href="/store/' + conversationId + '"><button class="btn btn-sm btn-light">View</button></a>';
                     html += '</div>';
                     html += '</td>';                    
                     html += '</tr>';                    
@@ -293,90 +210,144 @@ sub: All Conversations
         });  
     }
     
-    //getConversations(0);
-    
-    </script>
-
-
-<!-- MODALS -->
-
-<!-- BEGIN EDIT RULE -->
-<div class="modal" tabindex="-1" id="add-conversation">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Add Conversation</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <div class="mb-8">
-            <label for="conversation-name" class="form-label">Name</label>
-            <input type="text" class="form-control" id="conversation-name">
-          </div>
-          <div class="mb-8">
-            <label for="conversation-description" class="form-label">Description</label>
-            <textarea class="form-control" id="conversation-description" rows="10"></textarea>
-          </div>
-          <center>
-            <script>
-              function stripHTMLFromDescription(){
-                var description = document.getElementById("conversation-description").value;
-                description = stripHTML(description);
-                document.getElementById("conversation-description").value = description;
-              }
-            </script>
-            <a style="float: right; cursor:pointer" class="material-symbols-outlined fs-1 text-success" href="#" onclick="stripHTMLFromDescription();">code_off</a>
-          </center>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" onclick="addConversation();" data-bs-dismiss="modal">Add Conversation</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- END EDIT RULE -->
-
-<script>
-
 function addConversation(){    
 
-    var organization = "api-evangelist";
+    if(Cookies.get('access_token')){
 
-    var conversation_name = document.getElementById("conversation-name").value;
-    var conversation_description = document.getElementById("conversation-description").value;
+        document.getElementById("error-banner").style.display = 'none';    
 
-    var p = {};
-    p.name = conversation_name;
-    p.description = conversation_description;
+        var organization = "api-evangelist";
 
-    const options = {
-    method: 'post',
-    headers: {
-        "Content-Type": "application/json"                 
-    },    
-    body: JSON.stringify(p)
-    };
+        var conversation_name = document.getElementById("conversation-name").value;
+        var conversation_description = document.getElementById("conversation-description").value;
 
-    var github_url = '{{ site.conversationsApiBaseUrl }}/conversations?organization=' + organization;
-    //console.log(github_url);
-    fetch(github_url, options)
-    .then(function (response) {
-        if (!response.ok) {
-        console.log('Error with Status Code: ' + response.status);
-        }
-        response.json().then(function (response) {
+        var p = {};
+        p.name = conversation_name;
+        p.description = conversation_description;
 
-        console.log(response);
+        const options = {
+        method: 'post',
+        headers: {
+          "Content-Type": "application/json",
+          "X-API-Key": Cookies.get('access_token')                 
+        }, 
+        body: JSON.stringify(p)
+        };
 
+        var github_url = '{{ site.conversationsApiBaseUrl }}/conversations?organization=' + organization;
+        fetch(github_url, options)
+        .then(function (response) {
+            if (!response.ok) {
+                document.getElementById("error-banner").style.display = '';
+                document.getElementById("error-banner").innerHTML = 'You need to be authenticated to add conversation!';
+            }
+            response.json().then(function (response) {
+
+            console.log(response);
+
+            });
+        })
+        .catch(function (err) {
+            console.log('Error: ' + err);
         });
-    })
-    .catch(function (err) {
-        console.log('Error: ' + err);
-    });
 
-    document.getElementById("add-banner").style.display = 'none';
-    document.getElementById("add-button-wrapper").style.display = 'none';    
+        document.getElementById("add-banner").style.display = 'none';
+        document.getElementById("add-button-wrapper").style.display = 'none';    
+
+    }
+    else{
+      document.getElementById("error-banner").style.display = '';
+      document.getElementById("error-banner").innerHTML = 'You need to be authenticated to add conversation!';
+    }        
+
+}
+
+function processConversations(){    
+
+    if(Cookies.get('access_token')){
+
+        document.getElementById("error-banner").style.display = 'none';
+
+        var organization = "api-evangelist";
+
+        const options = {
+        method: 'get',
+        headers: {
+        "Content-Type": "application/json",
+        "X-API-Key": Cookies.get('access_token')                 
+        }        
+        };
+
+        var repo_url = '{{ site.conversationsApiBaseUrl }}/conversations/process';
+        fetch(repo_url, options)
+        .then(function (response) {
+            if (!response.ok) {
+                document.getElementById("error-banner").style.display = '';
+                document.getElementById("error-banner").innerHTML = 'You need to be authenticated to process conversations!';
+            }
+            response.json().then(function (response) {
+
+                console.log("DONE!");
+
+            });
+        })
+        .catch(function (err) {
+            console.log('Error: ' + err);
+        });
+
+    }
+    else{
+    document.getElementById("error-banner").style.display = '';
+    document.getElementById("error-banner").innerHTML = 'You need to be authenticated to process conversations!';
+    }        
+
+}
+
+function pullConversations(){    
+
+    if(Cookies.get('access_token')){
+
+        document.getElementById("error-banner").style.display = 'none';
+
+        var organization = "api-evangelist";
+
+        const options = {
+        method: 'get',
+        headers: {
+          "Content-Type": "application/json",
+          "X-API-Key": Cookies.get('access_token')                 
+        }        
+        };
+
+        var repo_url = '{{ site.conversationsApiBaseUrl }}/conversations/pull';
+        fetch(repo_url, options)
+        .then(function (response) {
+            if (!response.ok) {
+                document.getElementById("error-banner").style.display = '';
+                document.getElementById("error-banner").innerHTML = 'You need to be authenticated to pull conversations!';
+            }
+            response.json().then(function (response) {
+            if(response.message == "DONE"){
+                console.log("DONE!");
+            }
+            else{
+            document.getElementById("results").innerHTML += response.message + '<br>';
+                setTimeout(function() {
+                pullRepos();
+            }, 1500);        
+            }
+
+            });
+        })
+        .catch(function (err) {
+            console.log('Error: ' + err);
+        });
+
+    }
+    else{
+      document.getElementById("error-banner").style.display = '';
+      document.getElementById("error-banner").innerHTML = 'You need to be authenticated to pull conversations!';
+    }        
 
 }
 
