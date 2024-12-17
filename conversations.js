@@ -23,7 +23,7 @@ app.use('/conversations/:conversationId/commit', commitConversation);
 const reviewConversation = require('./paths/reviewConversation.js');
 app.use('/conversations/:conversationId/review', reviewConversation);
 
-app.listen(4400, () => {
-  console.log('Server listening on port 4400');
+app.listen(6200, () => {
+  console.log('Server listening on port 6200');
 });
 
