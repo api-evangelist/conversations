@@ -1,10 +1,13 @@
 title: API Evangelist Conversations
-description: Talking with product and engineering folk who are doing interesting things with APIs across business sectors, and all levels of the enterprise.
+description: Mapping the technical details of API operations to the human conversation.
 lang: en
 
 baseurl: ""
 
-url: https://conversations.apievangelist.com
+# Permalink URLs structure, for permalink style options see: https://jekyllrb.com/docs/permalinks/
+permalink: /:categories/:year/:month/:day/:title/
+
+url: "https://conversations.apievangelist.com"
 
 logo: https://kinlane-productions2.s3.amazonaws.com/api-evangelist-logos/api-evangelist-logo-butterfly.png
 
@@ -15,8 +18,17 @@ navbar:
 author:
     name:           Kin Lane
     title:          API Evangelist
-    email:          kin@apievangelist.com
     avatar:         https://kinlane-productions2.s3.amazonaws.com/kin-lane/kin-lane-cartoon-questioning.png
+
+authors:
+    kin:
+      name:         Kin Lane
+      title:        API Evangelist
+      avatar:       https://kinlane-productions2.s3.amazonaws.com/kin-lane/kin-lane-cartoon-questioning.png
+      email:       'kinlane@postman.com'
+      affiliation: 'API Evangelist'
+      github:      'kinlane'
+      linkedin:    'in/kinlane'       
 
 social:
     email:
@@ -45,58 +57,51 @@ share:
 footer:
     copyright:      API Evangelist
 
-# Disqus comments shortname, requires Disqus account https://disqus.com/
-disqus:
-    shortname:      # 1234
-
-# Google analytics code, get your code here https://www.google.com/analytics/
-google_analytics: UA-1119465-51
+# Path to post content assets directory i.e post images, pdfs etc
+uploads:            /uploads/
 
 # Build settings
 markdown:           kramdown
 highlighter:        rouge
-
-plugins:
-  - jekyll-feed
-  - jekyll-seo-tag
-  - jekyll-gist
-  - jekyll-avatar
-exclude:
-  - Gemfile
-  - Gemfile.lock
-  - node_modules
-
+  
 sass:
   style: compressed
 
+apisApiBaseUrl: 'https://apis-api.apievangelist.com'
+basesApiBaseUrl: 'https://bases-api.apievangelist.com'
+blueprintsApiBaseUrl: 'https://blueprints-api.apievangelist.com'
+contractsApiBaseUrl: 'https://contracts-api.apievangelist.com'
+conversationsApiBaseUrl: 'https://conversations-api.apievangelist.com'
+customersApiBaseUrl: 'https://customers-api.apievangelist.com'
+discoveryApiBaseUrl: 'https://discovery-api.apievangelist.com'
+evidenceApiBaseUrl: 'https://evidence-api.apievangelist.com'
+extensionsApiBaseUrl: 'https://extensions-api.apievangelist.com'
+guidancesApiBaseUrl: 'https://guidance-api.apievangelist.com'
+headersApiBaseUrl: 'https://headers-api.apievangelist.com'
+organizationsApiBaseUrl: 'https://organizations-api.apievangelist.com'
+overlaysApiBaseUrl: 'https://overlays-api.apievangelist.com'
+parametersApiBaseUrl: 'https://parameters-api.apievangelist.com'
+partnersApiBaseUrl: 'https://partners-api.apievangelist.com'
+policiesApiBaseUrl: 'https://policies-api.apievangelist.com'
+postsApiBaseUrl: 'https://posts-api.apievangelist.com'
+propertiesApiBaseUrl: 'https://properties-api.apievangelist.com'
+responsesApiBaseUrl: 'https://responses-api.apievangelist.com'
+rulesApiBaseUrl: 'https://rules-api.apievangelist.com'
+schemaApiBaseUrl: 'https://schema-api.apievangelist.com'
+servicesApiBaseUrl: 'https://services-api.apievangelist.com'
+standardsApiBaseUrl: 'https://standards-api.apievangelist.com'
+storiesApiBaseUrl: 'https://stories-api.apievangelist.com'
+strategiesApiBaseUrl: 'https://strategies-api.apievangelist.com'
+utilitiesApiBaseUrl: 'https://utilitiesapi.apievangelist.com'
+vocabulariesApiBaseUrl: 'https://vocabularies-api.apievangelist.com'
+
 collections:
-  sessions:
-    output: true
-  people:
-    output: true
-  questions:
-    output: true
-  industries:
-    output: true            
+  store:
+    output:         true
 
 defaults:
   - scope:
-      path: ""
-      type: sessions
+      path:         ""
+      type:         store
     values:
-      layout: sessions
-  - scope:
-      path: ""
-      type: people
-    values:
-      layout: people
-  - scope:
-      path: ""
-      type: questions
-    values:
-      layout: questions
-  - scope:
-      path: ""
-      type: industries
-    values:
-      layout: industries                  
+      layout:       store
