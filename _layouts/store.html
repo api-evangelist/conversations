@@ -445,6 +445,10 @@ sub: All Conversations
 
   function saveConversation(){
 
+    if(Cookies.get('access_token')){
+
+    document.getElementById("error-banner").style.display = 'none';
+
     var organization = "api-evangelist";
 
     var changes_name = "Saving Conversation with Conversation"
@@ -456,8 +460,9 @@ sub: All Conversations
     const options = {
       method: 'put',
       headers: {
-          "Content-Type": "application/json"                 
-      },    
+        "Content-Type": "application/json",
+        "X-API-Key": Cookies.get('access_token')                 
+      }, 
       body: JSON.stringify(conversation)
     };
     var github_url = '{{ site.conversationsApiBaseUrl }}/conversations/' + conversationId + '?organization=' + organization + '&name=' + changes_name + '&description=' + changes_description;
@@ -465,7 +470,8 @@ sub: All Conversations
     fetch(github_url, options)
       .then(function (response) {
         if (!response.ok) {
-          console.log('Error with Status Code: ' + response.status);
+          document.getElementById("error-banner").style.display = '';
+          document.getElementById("error-banner").innerHTML = 'You need to be authenticated to save a review!';
         }
         response.json().then(function (response) {
 
@@ -485,16 +491,27 @@ sub: All Conversations
       document.getElementById("commit-banner").style.display = '';
       document.getElementById("commit-button-wrapper").style.display = '';   
 
+    }
+    else{
+      document.getElementById("error-banner").style.display = '';
+      document.getElementById("error-banner").innerHTML = 'You need to be authenticated to save a review!';
+    }
+
   }
 
 function commitConversation(){
+
+  if(Cookies.get('access_token')){
+
+  document.getElementById("error-banner").style.display = 'none';
   
   var organization = "api-evangelist";
 
   const options = {
     method: 'put',
     headers: {
-        "Content-Type": "application/json"                 
+      "Content-Type": "application/json",
+      "X-API-Key": Cookies.get('access_token')                 
     }
   };
 
@@ -503,7 +520,8 @@ function commitConversation(){
   fetch(github_url, options)
     .then(function (response) {
       if (!response.ok) {
-        console.log('Error with Status Code: ' + response.status);
+        document.getElementById("error-banner").style.display = '';
+        document.getElementById("error-banner").innerHTML = 'You need to be authenticated to commit a conversation!';
       }
       response.json().then(function (response) {
 
@@ -523,9 +541,20 @@ function commitConversation(){
       console.log('Error: ' + err);
     });
 
+  }
+    else{
+      document.getElementById("error-banner").style.display = '';
+      document.getElementById("error-banner").innerHTML = 'You need to be authenticated to commit a conversation!';
+    }
+
 }
 
   function executeReview(){
+
+    if(Cookies.get('access_token')){
+
+    document.getElementById("error-banner").style.display = 'none';
+
 
     var path = document.getElementById("path").value;
   
@@ -537,9 +566,10 @@ function commitConversation(){
     const options = {
       method: 'put',
       headers: {
-            "Content-Type": "application/json"                 
-        },    
-        body: JSON.stringify(conversations_json)
+        "Content-Type": "application/json",
+        "X-API-Key": Cookies.get('access_token')                 
+      },  
+      body: JSON.stringify(conversations_json)
     };
   
     var github_url = '{{ site.conversationsApiBaseUrl }}/conversations/' + conversationId + '/review?organization=' + organization;
@@ -547,7 +577,8 @@ function commitConversation(){
     fetch(github_url, options)
       .then(function (response) {
         if (!response.ok) {
-          console.log('Error with Status Code: ' + response.status);
+          document.getElementById("error-banner").style.display = '';
+          document.getElementById("error-banner").innerHTML = 'You need to be authenticated to execute a review!';
         }
         response.json().then(function (response) {
   
@@ -564,36 +595,14 @@ function commitConversation(){
       .catch(function (err) {
         console.log('Error: ' + err);
       });
-  }
-  
-  function previousReview(){
-    
-    var page_start = document.getElementById("page_start").value;
-    page_start = page_start - 0;
-  
-    page_start = page_start - 3;
-  
-    document.getElementById("page_start").value = page_start;
-  
-    var listing = displayReview();
-  
-    document.getElementById("jit-guidance-wrapper").innerHTML = listing;
-  
-  }
-  
-  function nextReview(){
-  
-    var page_start = document.getElementById("page_start").value;
-    page_start = page_start - 0;
-  
-    page_start = page_start + 3;
-  
-    document.getElementById("page_start").value = page_start;
-    
-    var listing = displayReview();
-  
-    document.getElementById("jit-guidance-wrapper").innerHTML = listing;
-    
+
+    }
+    else{
+      document.getElementById("error-banner").style.display = '';
+      document.getElementById("error-banner").innerHTML = 'You need to be authenticated to execute a review!';
+    }
+
+
   }
   
   function filterReview(){
